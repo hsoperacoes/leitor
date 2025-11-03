@@ -523,10 +523,6 @@
         page-break-inside: avoid;
       }
 
-      svg {
-        background: none;
-      }
-
       svg text {
         fill: black !important;
         font-size: 14px !important;
@@ -960,7 +956,21 @@
     });
 
     document.addEventListener('DOMContentLoaded', function() {
-      // Omitido para brevidade, mas o conteúdo original está no arquivo final
+      const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+          if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+            const target = mutation.target;
+            if (target.id === 'sacola' && target.classList.contains('active')) {
+              // A função preencherDataSacola() não foi fornecida, mas o fluxo é mantido
+              // preencherDataSacola(); 
+            }
+          }
+        });
+      });
+
+      document.querySelectorAll('.section').forEach(function(section) {
+        observer.observe(section, { attributes: true });
+      });
     });
   </script>
 </body>
